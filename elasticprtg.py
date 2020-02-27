@@ -48,6 +48,6 @@ if __name__ == "__main__":
 		print(sensor.json_result)
 	except Exception as e:
 		csr = CustomSensorResult(text="Python Script execution error")
-		csr.error = "Python Script execution error: %s" % str(e)
+		csr.error = "Python Script execution error: {}".format(repr(e))
 		print(csr.json_result)
 

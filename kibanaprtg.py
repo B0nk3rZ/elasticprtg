@@ -26,16 +26,15 @@ if __name__ == "__main__":
 	
 		# create a prtg sensor and add the channel data. Each key/value in the json response from ES gets channelised
 		sensor = CustomSensorResult(output['status']['overall']['state'])
-		sensor.add_channel(channel_name="Status", unit=ValueUnit.COUNT, value=status, is_limit_mode=True, limit_max_error=1.5,limit_max_warning=0.5)
-		sensor.add_channel(channel_name="Metrics Requests Total", unit=ValueUnit.COUNT, value=output['metrics']['requests']['total'])
-		sensor.add_channel(channel_name="Metrics Connections", unit=ValueUnit.COUNT, value=output['metrics']['concurrent_connections'])
-		sensor.add_channel(channel_name="Max. Response Time", unit="Milliseconds", value=output['metrics']['response_times']['max_in_millis'])
-		sensor.add_channel(channel_name="Avg. Response Time", unit="Milliseconds", value=output['metrics']['response_times']['avg_in_millis'])
+		sensor.add_channel(name="Status", unit=ValueUnit.COUNT, value=status, is_limit_mode=True, limit_max_error=1.5,limit_max_warning=0.5)
+		sensor.add_channel(name="Metrics Requests Total", unit=ValueUnit.COUNT, value=output['metrics']['requests']['total'])
+		sensor.add_channel(name="Metrics Connections", unit=ValueUnit.COUNT, value=output['metrics']['concurrent_connections'])
+		sensor.add_channel(name="Max. Response Time", unit="Milliseconds", value=output['metrics']['response_times']['max_in_millis'])
 	
 		# send the sensor data back to the prtg process in json format
 		print(sensor.json_result)
 	except Exception as e:
 		csr = CustomSensorResult(text="Python Script execution error")
-		csr.error = "Python Script execution error: %s" % str(e)
+		csr.error = "Python Script execution error: {}".format(repr(e))
 		print(csr.json_result)
 
