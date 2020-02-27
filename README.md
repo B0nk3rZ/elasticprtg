@@ -3,11 +3,8 @@ Simple API to PRTG sensor script for Elasticsearch cluster health data
 
 This script uses the data returned by Elasticsearch when you do a call to http://{ESNODEIP}:9200/_cluster/health and turns each key/value pair into a channel inside a PRTG sensor
 
-You need to install the requests module to the python instance that comes with PRTG. The easiest way to do this is to install pip.
-
-  1. Download the get-pip.py file from here: https://pip.pypa.io/en/stable/installing/
-  2. Open cmd as admin and run: C:\Program Files (x86)\PRTG Network Monitor\Python34\python.exe [path to file]\get-pip.py
-  3. You can then run C:\Program Files (x86)\PRTG Network Monitor\Python34\Scripts\pip.exe install requests
+You need to install the requests module to the python instance that comes with PRTG. The easiest way to do this is to use pip.
+Open cmd as admin and run: C:\Program Files (x86)\PRTG Network Monitor\python\python.exe -m pip install requests
   
 Once installed, paste the elasticprtg.py file to the custom sensors directory on the PRTG machine that will be doing the query. If you have remote probes, it will have to be on those machines. The custom sensor directory is found here: 
 C:\Program Files (x86)\PRTG Network Monitor\Custom Sensors\python
